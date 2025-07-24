@@ -35,7 +35,7 @@ A web-based personal finance tracking system that helps users monitor their inco
 - 🌐 JSP & Servlets
 - 🛢️ MySQL
 - 🔗 JDBC
-- 🎨 HTML, CSS, JavaScript
+- 🎨 HTML, CSS
 - 🐱 Git & GitHub
 - 🚀 Apache Tomcat 10
 
@@ -61,7 +61,4 @@ A web-based personal finance tracking system that helps users monitor their inco
 
 ---
 
-Let me know if you want:
-- a matching **LinkedIn post caption**
-- a **license** section
-- or help adding the actual screenshots in your repo and README.
+
