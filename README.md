@@ -20,13 +20,13 @@ A web-based personal finance tracking system that helps users monitor their inco
 ![Dashboard](Screenshots/dashboard.png)
 
 ### 👤 User Dashboard
-![User Dashboard](Screenshots/user_dashboard.png)
+![User Dashboard](Screenshots/user-dashboard.png)
 
 ### ➕ Add Expense
-![Add Expense](Screenshots/add_expense.png)
+![Add Expense](Screenshots/add-expense.png)
 
 ### 📄 View Expense
-![View Expense](Screenshots/view_expense.png)
+![View Expense](Screenshots/view-expense.png)
 
 
 ## 🛠️ Tech Stack
