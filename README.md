@@ -25,7 +25,7 @@ A web-based personal finance tracking system that helps users monitor their inco
 ### ➕ Add Expense
 ![Add Expense](Screenshots/add-expense.png)
 
-### 📅 Monthly Report
+### 📅 view Expense
 ![Monthly Report](Screenshots/view-expense.png)
 
 > 📌 Add your actual screenshots into the `Screenshots/` folder and make sure the filenames match.
