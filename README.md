@@ -19,18 +19,15 @@ A web-based personal finance tracking system that helps users monitor their inco
 ### 🏠 Dashboard
 ![Dashboard](Screenshots/dashboard.png)
 
-### 🏠 User Dashboard
-![Add Expense](Screenshots/user-dashboard.png)
+### 👤 User Dashboard
+![User Dashboard](Screenshots/user_dashboard.png)
 
 ### ➕ Add Expense
-![Add Expense](Screenshots/add-expense.png)
+![Add Expense](Screenshots/add_expense.png)
 
-### 📅 view Expense
-![Monthly Report](Screenshots/view-expense.png)
+### 📄 View Expense
+![View Expense](Screenshots/view_expense.png)
 
-> 📌 Add your actual screenshots into the `Screenshots/` folder and make sure the filenames match.
-
----
 
 ## 🛠️ Tech Stack
 
