@@ -20,13 +20,13 @@ A web-based personal finance tracking system that helps users monitor their inco
 ![Dashboard](Screenshots/dashboard.png)
 
 ### 👤 User Dashboard
-![User Dashboard](Screenshots/user_dashboard.png)
+![User Dashboard](Screenshots/user-dashboard.png)
 
 ### ➕ Add Expense
-![Add Expense](Screenshots/add_expense.png)
+![Add Expense](Screenshots/add-expense.png)
 
 ### 📄 View Expense
-![View Expense](Screenshots/view_expense.png)
+![View Expense](Screenshots/view-expense.png)
 
 
 ## 🛠️ Tech Stack
@@ -35,7 +35,7 @@ A web-based personal finance tracking system that helps users monitor their inco
 - 🌐 JSP & Servlets
 - 🛢️ MySQL
 - 🔗 JDBC
-- 🎨 HTML, CSS, JavaScript
+- 🎨 HTML, CSS
 - 🐱 Git & GitHub
 - 🚀 Apache Tomcat 10
 
@@ -61,7 +61,4 @@ A web-based personal finance tracking system that helps users monitor their inco
 
 ---
 
-Let me know if you want:
-- a matching **LinkedIn post caption**
-- a **license** section
-- or help adding the actual screenshots in your repo and README.
+
