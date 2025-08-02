@@ -1,64 +1,75 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="java.util.List,com.money.management.tracker.model.Expense" %>
+<%@ page import="java.util.*,com.money.management.tracker.model.Expense" %>
 <%@ include file="component/navbar.jsp" %>
-<%
-    // OPTIONAL: Safety redirect if accessed directly
-    if (request.getAttribute("expenses") == null) {
-        response.sendRedirect("expense");
-        return;
-    }
-%>
 <html>
 <head>
-    <title>Your Expenses</title>
+    <title>View Expenses</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        .expense-banner {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
-<div class="container mt-3">
-    <img src="images/img3.jpg" alt="View Expense Banner" class="expense-banner">
-    <h2>Your Expenses</h2>
-    <%
-        List<Expense> expenses = (List<Expense>) request.getAttribute("expenses");
-        if (expenses != null && !expenses.isEmpty()) {
-    %>
-    <table class="table table-striped">
+<div class="container mt-4">
+    <h2>Expenses for <%= request.getAttribute("month") %>/<%= request.getAttribute("year") %></h2>
+    <div class="row mb-3">
+        <div class="col">
+            <strong>Monthly Income:</strong> ₹<%= request.getAttribute("monthlyIncome") %>
+        </div>
+        <div class="col">
+            <strong>Total Expenses:</strong> ₹<%= request.getAttribute("totalExpense") %>
+        </div>
+        <div class="col">
+            <strong>Balance:</strong> ₹<%= request.getAttribute("balance") %>
+        </div>
+    </div>
+    <form class="row mb-4" method="get" action="expense">
+        <div class="col-auto">
+            <input type="number" name="month" min="1" max="12" class="form-control" value="<%= request.getAttribute("month") %>" required>
+        </div>
+        <div class="col-auto">
+            <input type="number" name="year" min="2000" max="2100" class="form-control" value="<%= request.getAttribute("year") %>" required>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-secondary">Change Month</button>
+        </div>
+    </form>
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Category</th>
                 <th>Date</th>
+                <th>Category</th>
                 <th>Amount</th>
                 <th>Description</th>
+                <th>Split Persons</th>
+                <th>Share/Person</th>
             </tr>
         </thead>
         <tbody>
-        <% for (Expense e : expenses) { %>
+            <%
+                List<Expense> expenses = (List<Expense>) request.getAttribute("expenses");
+                if (expenses != null && !expenses.isEmpty()) {
+                    for (Expense expense : expenses) {
+            %>
             <tr>
-                <td><%= e.getCategory() %></td>
-                <td><%= e.getExpenseDate() %></td>
-                <td>₹<%= e.getAmount() %></td>
-                <td><%= e.getDescription() %></td>
+                <td><%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(expense.getExpenseDate()) %></td>
+                <td><%= expense.getCategory() %></td>
+                <td>₹<%= expense.getAmount() %></td>
+                <td><%= expense.getDescription() %></td>
+                <td><%= expense.getSplitPersons() %></td>
+                <td>₹<%= String.format("%.2f", expense.getAmount() / expense.getSplitPersons()) %></td>
             </tr>
-        <% } %>
+            <%
+                    }
+                } else {
+            %>
+            <tr><td colspan="6" class="text-center">No expenses found for this month.</td></tr>
+            <% } %>
         </tbody>
     </table>
-    <%
-        } else {
-    %>
-        <p>No expenses added yet.</p>
-    <%
-        }
-    %>
-    <a href="addExpense.jsp" class="btn btn-success mt-3">Add New Expense</a>
-    <a href="logout" class="btn btn-danger mt-3">Logout</a>
+    <a href="addExpense.jsp" class="btn btn-primary">Add Expense</a>
+    <div class="text-center mt-4">
+        <button class="btn btn-outline-dark" onclick="window.history.back()">Back</button>
+    </div>
 </div>
 </body>
 </html>

@@ -4,15 +4,8 @@
 <head>
     <title>Add Expense</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        .expense-banner {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 <div class="container mt-3">
@@ -42,9 +35,20 @@
             <label class="form-label">Description:</label>
             <input type="text" name="description" class="form-control" required>
         </div>
+        <% 
+            if (user != null && ((com.money.management.tracker.model.User)user).getUserType().equals("bachelor")) { 
+        %>
+            <div class="mb-3">
+                <label class="form-label">Number of Persons to Split:</label>
+                <input type="number" min="1" name="splitPersons" class="form-control" value="1" required>
+            </div>
+        <% } %>
         <button type="submit" class="btn btn-primary">Add Expense</button>
         <a href="expense" class="btn btn-secondary">View Expenses</a>
     </form>
+    <div class="text-center mt-4">
+        <button class="btn btn-outline-dark" onclick="window.history.back()">Back</button>
+    </div>
 </div>
 </body>
 </html>

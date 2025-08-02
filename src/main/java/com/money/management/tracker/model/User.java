@@ -17,15 +17,19 @@ public class User {
 
     @NotNull
     @Email
-    @Column(unique = true)
     private String email;
 
     @NotNull
-    @Size(min = 6, max = 100)
+    @Size(min = 6)
     private String password;
 
-    public User() {}
+    @Min(0)
+    private double monthlyIncome;
 
+    @NotNull
+    private String userType;
+
+    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -38,8 +42,9 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", username=" + username + ", email=" + email + "]";
-    }
+    public double getMonthlyIncome() { return monthlyIncome; }
+    public void setMonthlyIncome(double monthlyIncome) { this.monthlyIncome = monthlyIncome; }
+
+    public String getUserType() { return userType; }
+    public void setUserType(String userType) { this.userType = userType; }
 }

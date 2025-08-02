@@ -38,9 +38,20 @@ public class RegisterServlet extends HttpServlet {
         String username = req.getParameter("username");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String userType = req.getParameter("userType");
+        String monthlyIncomeStr = req.getParameter("monthlyIncome");
 
         if (password == null || password.trim().isEmpty()) {
             req.setAttribute("error", "Password cannot be empty!");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            return;
+        }
+
+        double monthlyIncome = 0.0;
+        try {
+            monthlyIncome = Double.parseDouble(monthlyIncomeStr);
+        } catch (Exception e) {
+            req.setAttribute("error", "Invalid monthly income!");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
             return;
         }
@@ -66,6 +77,8 @@ public class RegisterServlet extends HttpServlet {
             user.setUsername(username);
             user.setEmail(email);
             user.setPassword(password);
+            user.setUserType(userType);
+            user.setMonthlyIncome(monthlyIncome);
 
             session.save(user);
             tx.commit();

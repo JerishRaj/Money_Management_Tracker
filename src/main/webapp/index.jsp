@@ -5,35 +5,8 @@
 <head>
     <title>Money Management Tracker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        html, body {height: 100%; margin: 0; padding: 0;}
-        .carousel,
-        .carousel-inner,
-        .carousel-item,
-        .carousel-item img {height: 100vh;}
-        .carousel-item img {object-fit: cover; width: 100vw;}
-        .dashboard-caption {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            text-align: center;
-            width: 100%;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .dashboard-caption h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-        .dashboard-caption p {
-            font-size: 1.3rem;
-            font-weight: 400;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div id="expenseCarousel" class="carousel slide" data-bs-ride="carousel" style="position:relative;">

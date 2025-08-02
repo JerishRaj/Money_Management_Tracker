@@ -3,8 +3,7 @@ package com.money.management.tracker.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import com.money.management.tracker.dao.ExpenseDAO;
 import com.money.management.tracker.daoimpl.ExpenseDAOImpl;
@@ -48,12 +47,22 @@ public class ExpenseServlet extends HttpServlet {
                 expenseDate = new Date(); // fallback to today
             }
 
+            int splitPersons = 1;
+            if ("bachelor".equals(user.getUserType())) {
+                try {
+                    splitPersons = Integer.parseInt(request.getParameter("splitPersons"));
+                } catch (Exception e) {
+                    splitPersons = 1;
+                }
+            }
+
             Expense expense = new Expense();
             expense.setCategory(category);
             expense.setAmount(amount);
             expense.setDescription(description);
             expense.setExpenseDate(expenseDate);
             expense.setUser(user); // ENSURE THIS IS THE USER FROM SESSION
+            expense.setSplitPersons(splitPersons);
 
             expenseDAO.addExpense(expense);
             // Redirect to the servlet (not directly to JSP)
@@ -72,8 +81,28 @@ public class ExpenseServlet extends HttpServlet {
             return;
         }
 
-        List<Expense> expenses = expenseDAO.getExpensesByUser(user);
+        // Get current month and year, or use from parameters if provided
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        if (request.getParameter("year") != null && request.getParameter("month") != null) {
+            year = Integer.parseInt(request.getParameter("year"));
+            month = Integer.parseInt(request.getParameter("month"));
+        }
+
+        List<Expense> expenses = expenseDAO.getExpensesByUserAndMonth(user, year, month);
+
+        double totalExpense = expenses.stream().mapToDouble(Expense::getAmount).sum();
+        double monthlyIncome = user.getMonthlyIncome();
+        double balance = monthlyIncome - totalExpense;
+
         request.setAttribute("expenses", expenses);
+        request.setAttribute("totalExpense", totalExpense);
+        request.setAttribute("balance", balance);
+        request.setAttribute("monthlyIncome", monthlyIncome);
+        request.setAttribute("year", year);
+        request.setAttribute("month", month);
+
         request.getRequestDispatcher("viewExpenses.jsp").forward(request, response);
     }
 }

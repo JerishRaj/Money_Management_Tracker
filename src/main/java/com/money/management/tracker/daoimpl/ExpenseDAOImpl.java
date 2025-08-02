@@ -49,4 +49,24 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 
         return expenses;
     }
+
+    @Override
+    public List<Expense> getExpensesByUserAndMonth(User user, int year, int month) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Expense> expenses = null;
+        try {
+            expenses = session.createQuery(
+                "FROM Expense WHERE user.id = :userId AND YEAR(expenseDate) = :year AND MONTH(expenseDate) = :month ORDER BY expenseDate DESC",
+                Expense.class)
+                .setParameter("userId", user.getId())
+                .setParameter("year", year)
+                .setParameter("month", month)
+                .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return expenses;
+    }
 }
