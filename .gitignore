@@ -1,0 +1,8 @@
+# Ignore build output
+target/
+ECHO is on.
+# Ignore Eclipse settings
+.settings/
+ECHO is on.
+# Ignore class files
+*.class
